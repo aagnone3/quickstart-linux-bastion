@@ -3,6 +3,8 @@
 # authors: tonynv@amazon.com, sancard@amazon.com, ianhill@amazon.com
 # NOTE: This requires GNU getopt. On Mac OS X and FreeBSD you must install GNU getopt and mod the checkos function so that it's supported
 
+exec > >(tee /var/log/bastion-bootstrap-log.log|logger -t user-data -s 2>/dev/console) 2>&1
+
 
 # Configuration
 PROGRAM='Linux Bastion'
@@ -115,7 +117,8 @@ function setup_logs () {
         dpkg -i -E ./amazon-cloudwatch-agent.deb
         rm ./amazon-cloudwatch-agent.deb
     elif [[ "${release}" == "AMZN" ]]; then
-        curl "https://amazoncloudwatch-agent-${REGION}.s3.${REGION}.${URL_SUFFIX}/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm" -O
+        curl "https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/arm64/latest/amazon-cloudwatch-agent.rpm" -O
+        # curl "https://amazoncloudwatch-agent-${REGION}.s3.${REGION}.${URL_SUFFIX}/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm" -O
         rpm -U ./amazon-cloudwatch-agent.rpm
         rm ./amazon-cloudwatch-agent.rpm
     fi

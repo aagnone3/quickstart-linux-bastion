@@ -1,0 +1,17 @@
+S3_BUCKET=aagnone-linux-bastion
+S3_BUCKET_REGION=us-east-1
+S3_PREFIX=infrastructure/
+CFN_STACK_NAME=Ec2Bastion
+KEY_PAIR_NAME=aws-agnone
+EC2_INSTANCE_TYPE=t4g.small
+TEMPLATE_FILE=infrastructure/templates/linux-bastion.yaml
+AMI_OS=Amazon-Linux2-HVM
+HOST_NAME=Bastion
+NUM_HOSTS='1'
+VPC_ID=vpc-55332e2c
+SUBNET1_ID=subnet-19659352
+SUBNET2_ID=subnet-f00637dc
+REMOTE_ACCESS_CIDR='0.0.0.0/0'
+EBS_SIZE_GB=20
+CFN_CAPABILITIES="CAPABILITY_IAM CAPABILITY_NAMED_IAM"
+ENABLE_BANNER=true
