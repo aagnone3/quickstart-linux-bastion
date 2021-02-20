@@ -654,6 +654,10 @@ Resources:
           FromPort: 22
           ToPort: 22
           CidrIp: !Ref RemoteAccessCIDR
+        - IpProtocol: tcp
+          FromPort: 8976
+          ToPort: 8976
+          CidrIp: !Ref RemoteAccessCIDR
         - IpProtocol: icmp
           FromPort: -1
           ToPort: -1
